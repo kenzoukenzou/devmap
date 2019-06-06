@@ -8,8 +8,6 @@ import OverviewCreate from "./components/overviews/OverviewCreate";
 import OverviewEdit from "./components/overviews/OverviewEdit";
 import Overviews from "./components/overviews/Overviews";
 import OverviewShow from "./components/overviews/OverviewShow";
-import StepCreate from "./components/steps/StepCreate";
-import StepShow from "./components/steps/StepShow";
 import UserShow from "./components/users/UserShow";
 
 class App extends Component {
