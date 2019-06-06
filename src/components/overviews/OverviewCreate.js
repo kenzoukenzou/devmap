@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-import { createProject } from "../../store/actions/projectActions";
+import { createOverview } from "../../store/actions/overviewActions";
 
 class OverviewCreate extends Component {
   state = {
@@ -73,7 +73,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    createProject: project => dispatch(createProject(project))
+    createOverview: overview => dispatch(createOverview(overview))
   };
 };
 
