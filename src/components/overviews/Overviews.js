@@ -7,7 +7,7 @@ import { compose } from "redux";
 
 class Overviews extends Component {
   render() {
-    const { auth, projects } = this.props;
+    const { auth, overviews } = this.props;
     if (!auth.uid) return <Redirect to="/login" />;
 
     return (
@@ -23,18 +23,18 @@ class Overviews extends Component {
                 </tr>
               </thead>
               <tbody>
-                {projects &&
-                  projects.map(project => (
+                {overviews &&
+                  overviews.map(overview => (
                     <tr>
                       <td>
-                        <Link to={`/projects/${project.key}`}>
-                          {project.title}
+                        <Link to={`/overviews/${overview.key}`}>
+                          {overview.title}
                         </Link>
                       </td>
-                      <td>{project.description}</td>
+                      <td>{overview.description}</td>
                       <td>
-                        <Link to={`/users/${project.authorID}`}>
-                          {project.authorName}
+                        <Link to={`/users/${overview.authorID}`}>
+                          {overview.authorName}
                         </Link>
                       </td>
                     </tr>
@@ -50,7 +50,7 @@ class Overviews extends Component {
 
 const mapStateToProps = state => {
   return {
-    projects: state.firestore.ordered.projects,
+    overviews: state.firestore.ordered.overviews,
     auth: state.firebase.auth
   };
 };
@@ -59,7 +59,7 @@ export default compose(
   connect(mapStateToProps),
   firestoreConnect([
     {
-      collection: "projects",
+      collection: "overviews",
       orderBy: ["createdAt", "desc"]
     },
     {

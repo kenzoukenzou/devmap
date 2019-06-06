@@ -18,8 +18,8 @@ class OverviewCreate extends Component {
 
   onSubmit = e => {
     e.preventDefault();
-    this.props.createProject(this.state); // ①createProject Actionにstateを渡す
-    this.props.history.push(`/projects/${this.props.match.params.id}`);
+    this.props.createOverview(this.state); // ①createProject Actionにstateを渡す
+    this.props.history.push(`/overviews/${this.props.match.params.id}`);
   };
 
   render() {

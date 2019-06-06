@@ -16,16 +16,16 @@ class OverviewEdit extends Component {
   componentDidMount() {
     const ref = firebase
       .firestore()
-      .collection("projects")
+      .collection("overviews")
       .doc(this.props.match.params.id);
     ref.get().then(doc => {
       if (doc.exists) {
-        const project = doc.data();
+        const overview = doc.data();
         this.setState({
-          title: project.title,
-          description: project.description,
+          title: overview.title,
+          description: overview.description,
           key: this.props.match.params.id,
-          authorName: project.authorName,
+          authorName: overview.authorName,
           authorID: this.props.auth.uid
         });
       } else {
@@ -42,7 +42,7 @@ class OverviewEdit extends Component {
 
   onSubmit = e => {
     e.preventDefault();
-    this.propsOverview.editProject(this.state); // ①createProject Actionにstateを渡す
+    this.props.editOverview(this.state); // ①createProject Actionにstateを渡す
     this.props.history.push("/");
   };
 
@@ -96,7 +96,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    editProject: project => dispatch(editOverview(project))
+    editOverview: overview => dispatch(editOverview(overview))
   };
 };
 
