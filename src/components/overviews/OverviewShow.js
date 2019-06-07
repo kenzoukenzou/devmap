@@ -36,8 +36,7 @@ class OverviewShow extends Component {
                 <Link to={`/edit/${overview.id}`} key={overview.id}>
                   <FontAwesomeIcon icon={faPencilAlt} />
                 </Link>
-                {/*  @@TODO */}
-                {/* Clickイベントに対して引数を渡す */}
+
                 <Link className="ml-3" onClick={e => click(e, overview.id)}>
                   <FontAwesomeIcon icon={faTrash} />
                 </Link>

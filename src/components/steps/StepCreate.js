@@ -7,7 +7,7 @@ class StepCreate extends Component {
     title: "",
     link: "",
     description: "",
-    projectID: this.props.projectID
+    overviewID: this.props.overviewID
   };
 
   onChange = e => {
@@ -18,7 +18,7 @@ class StepCreate extends Component {
 
   onSubmit = e => {
     e.preventDefault();
-    this.props.createComment(this.state);
+    this.props.createStep(this.state);
     this.setState({
       title: "",
       link: "",
