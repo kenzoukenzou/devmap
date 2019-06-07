@@ -4,6 +4,7 @@ import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { firestoreConnect } from "react-redux-firebase";
 import { compose } from "redux";
+import Twemoji from "react-twemoji";
 
 //action creater
 import { deleteOverview } from "../../store/actions/overviewActions";
@@ -31,6 +32,16 @@ class OverviewShow extends Component {
         return overview ? (
           <div>
             <h4>{overview.title}</h4>
+            <Link to={`/users/${overview.authorID}`}>
+              <Twemoji
+                style={{ display: "inline-block" }}
+                options={{ className: "twemoji" }}
+                className="mr-1"
+              >
+                😉
+              </Twemoji>
+              {overview.authorName}
+            </Link>
             {overview.authorID === auth.uid ? (
               <div className="text-right pr-3">
                 <Link to={`/edit/${overview.id}`} key={overview.id}>

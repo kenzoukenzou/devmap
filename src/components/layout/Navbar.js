@@ -30,7 +30,7 @@ class Navbar extends Component {
             {" "}
             <Twemoji
               style={{ display: "inline-block" }}
-              options={{ className: "twemoji" }}
+              options={{ className: "nav-twemoji" }}
               className="mr-3"
             >
               😉

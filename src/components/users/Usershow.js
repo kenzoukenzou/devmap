@@ -1,9 +1,10 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import { firestoreConnect } from "react-redux-firebase";
 import { compose } from "redux";
 import { Link } from "react-router-dom";
 import { unsubscribe } from "../../store/actions/authActions";
+import Twemoji from "react-twemoji";
 
 class UserShow extends Component {
   onClick = e => {
@@ -13,15 +14,19 @@ class UserShow extends Component {
   };
 
   render() {
-    const { user, projects, auth } = this.props;
-    const projectNodes =
-      projects &&
-      projects.map(project => {
-        return project.authorID === this.props.match.params.id ? (
-          <Link to={`/projects/${project.id}`}>
-            {project.title}
-            <br />
-          </Link>
+    const { user, overviews, auth } = this.props;
+    const overviewNodes =
+      overviews &&
+      overviews.map(overview => {
+        return overview.authorID === this.props.match.params.id ? (
+          <div className="wrapper">
+            <h5>
+              <Link to={`/overviews/${overview.key}`}>
+                {overview.title}
+                <br />
+              </Link>
+            </h5>
+          </div>
         ) : null;
       });
     let unsubscribeNodes;
@@ -34,11 +39,19 @@ class UserShow extends Component {
     }
 
     return (
-      <div>
-        <div>{user ? <h6>{user.name}</h6> : null}</div>
-        <div>{projectNodes}</div>
-        {unsubscribeNodes}
-      </div>
+      <Fragment>
+        <div className="text-center mt-5">
+          <Twemoji
+            style={{ display: "inline-block" }}
+            options={{ className: "nav-twemoji" }}
+            className="mr-3"
+          >
+            😉
+          </Twemoji>
+          {user ? <h6 className="mt-1">{user.name}</h6> : null}
+        </div>
+        {overviewNodes}
+      </Fragment>
     );
   }
 }
@@ -49,7 +62,7 @@ const mapStateToProps = (state, ownProps) => {
   const user = users ? users[id] : null;
 
   return {
-    projects: state.firestore.ordered.projects,
+    overviews: state.firestore.ordered.overviews,
     user: user,
     auth: state.firebase.auth
   };
@@ -66,5 +79,5 @@ export default compose(
     mapStateToProps,
     mapDispatchToProps
   ),
-  firestoreConnect([{ collection: "projects" }])
+  firestoreConnect([{ collection: "overviews" }])
 )(UserShow);

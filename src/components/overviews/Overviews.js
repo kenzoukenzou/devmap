@@ -12,7 +12,7 @@ class Overviews extends Component {
     if (!auth.uid) return <Redirect to="/login" />;
 
     return (
-      <Fragment>
+      <div className="mt-4">
         {overviews &&
           overviews.map(overview => (
             <div className="wrapper">
@@ -32,7 +32,7 @@ class Overviews extends Component {
               </Link>
             </div>
           ))}
-      </Fragment>
+      </div>
     );
   }
 }
