@@ -16,6 +16,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPencilAlt } from "@fortawesome/free-solid-svg-icons";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
+import Helmet from "react-helmet";
+
 class OverviewShow extends Component {
   render() {
     const { auth, overviews } = this.props;
@@ -31,6 +33,11 @@ class OverviewShow extends Component {
       overviews.map(overview => {
         return overview ? (
           <div>
+            <Helmet>
+              <title>
+                {overview.title} | {overview.authorName}さんのロードマップ
+              </title>
+            </Helmet>
             <h4>{overview.title}</h4>
             <Link to={`/users/${overview.authorID}`}>
               <Twemoji
@@ -42,6 +49,7 @@ class OverviewShow extends Component {
               </Twemoji>
               {overview.authorName}
             </Link>
+            {/* display edit & delete links if author */}
             {overview.authorID === auth.uid ? (
               <div className="text-right pr-3">
                 <Link to={`/edit/${overview.id}`} key={overview.id}>
@@ -61,7 +69,7 @@ class OverviewShow extends Component {
         ) : null;
       });
 
-    if (!auth.uid) return <Redirect to="/login" />;
+    // if (!auth.uid) return <Redirect to="/login" />;
     return <div className="mt-4">{overviewNodes}</div>;
   }
 }

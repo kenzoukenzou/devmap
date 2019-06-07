@@ -5,14 +5,19 @@ import { connect } from "react-redux";
 import { firestoreConnect } from "react-redux-firebase";
 import { compose } from "redux";
 import Twemoji from "react-twemoji";
+import Helmet from "react-helmet";
 
 class Overviews extends Component {
   render() {
     const { auth, overviews } = this.props;
-    if (!auth.uid) return <Redirect to="/login" />;
+    // if (!auth.uid) return <Redirect to="/login" />;
 
     return (
       <div className="mt-4">
+        <Helmet>
+          <title>Devmap | 独学ロードマップ共有サービス</title>
+          <meta name="description" content="独学ロードマップ共有サービス" />
+        </Helmet>
         {overviews &&
           overviews.map(overview => (
             <div className="wrapper">

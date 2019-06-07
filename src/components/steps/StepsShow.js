@@ -51,7 +51,7 @@ class StepsShow extends Component {
       steps &&
       steps.map(step => {
         return step.overviewID === this.props.overviewID ? (
-          <div>
+          <div className="mt-4">
             <ul className="timeline">
               <li>
                 <label className="label">

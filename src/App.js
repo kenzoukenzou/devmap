@@ -9,6 +9,7 @@ import OverviewEdit from "./components/overviews/OverviewEdit";
 import Overviews from "./components/overviews/Overviews";
 import OverviewShow from "./components/overviews/OverviewShow";
 import UserShow from "./components/users/UserShow";
+import Helmet from "react-helmet";
 
 class App extends Component {
   render() {
@@ -16,6 +17,33 @@ class App extends Component {
       <BrowserRouter>
         <div className="App">
           <Navbar />
+          {/* Setting OGP */}
+          <Helmet
+            meta={[
+              { name: "twitter:card", content: "summary_large_image" },
+              { name: "twitter:title", content: "Devmap" },
+              {
+                name: "twitter:description",
+                content: "独学ロードマップ共有サービス"
+              },
+              { name: "twitter:image", content: "http://path/to/image" },
+              {
+                property: "og:title",
+                content: "Devmap | 独学ロードマップ共有サービス"
+              },
+              { property: "og:type", content: "website" },
+              { property: "og:url", content: "http://path/to/this/url" },
+              { property: "og:image", content: "http://path/to/image" },
+              {
+                property: "og:description",
+                content: "独学ロードマップ共有サービス"
+              },
+              {
+                property: "og:site_name",
+                content: "Devmap | 独学ロードマップ共有サービス"
+              }
+            ]}
+          />
           <div className="container">
             <Switch>
               <Route exact path="/" component={Overviews} />
