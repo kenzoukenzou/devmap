@@ -10,6 +10,7 @@ import Overviews from "./components/overviews/Overviews";
 import OverviewShow from "./components/overviews/OverviewShow";
 import UserShow from "./components/users/UserShow";
 import Helmet from "react-helmet";
+import defaultOGP from "./defaultogp.png";
 
 class App extends Component {
   render() {
@@ -33,7 +34,7 @@ class App extends Component {
               },
               { property: "og:type", content: "website" },
               { property: "og:url", content: "http://path/to/this/url" },
-              { property: "og:image", content: "http://path/to/image" },
+              { property: "og:image", content: defaultOGP },
               {
                 property: "og:description",
                 content: "独学ロードマップ共有サービス"

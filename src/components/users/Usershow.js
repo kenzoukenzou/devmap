@@ -51,9 +51,9 @@ class UserShow extends Component {
           </Twemoji>
           {user ? (
             <Fragment>
-              <h6 className="mt-1">{user.name}</h6>
+              <h6 className="mt-1">{user.displayName}</h6>
               <Helmet>
-                <title>{user.name}さんのプロフィール | Devmap</title>
+                {/* <title>{user.name}さんのプロフィール | Devmap</title> */}
               </Helmet>
             </Fragment>
           ) : null}

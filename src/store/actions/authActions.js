@@ -1,3 +1,5 @@
+import Firebase from "../../Firebase";
+
 export const signIn = credentials => {
   return (dispatch, getState, { getFirebase }) => {
     const firebase = getFirebase();
@@ -45,6 +47,29 @@ export const signup = newUser => {
       })
       .catch(err => {
         dispatch({ type: "SIGNUP_ERROR", err });
+      });
+  };
+};
+
+export const loginwithGoogle = () => {
+  return (dispatch, getState, { getFirebase, getFirestore }) => {
+    const firestore = getFirestore();
+    const provider = new Firebase.auth.GoogleAuthProvider();
+    Firebase.auth()
+      .signInWithRedirect(provider)
+      .then(response => {
+        return firestore
+          .collection("users")
+          .doc(response.user.uid)
+          .set({
+            name: response.displayName
+          })
+          .then(() => {
+            dispatch({ type: "SIGNUP_WITH_GOOGLE_SUCCESS" });
+          })
+          .catch(err => {
+            dispatch({ type: "SIGNUP_WITH_GOOGLE_ERROR", err });
+          });
       });
   };
 };

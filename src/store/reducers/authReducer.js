@@ -28,6 +28,17 @@ const authReducer = (state = initState, action) => {
         ...state,
         authError: action.err.message
       };
+    case "SIGNUP_WITH_GOOGLE_SUCCESS":
+      console.log("google!");
+      return {
+        ...state,
+        authError: null
+      };
+    case "SIGNUP_WITH_GOOGLE_ERROR":
+      return {
+        ...state,
+        authError: action.err.message
+      };
     case "DELETE_USER":
       return {
         ...state,

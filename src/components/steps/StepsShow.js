@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import ReactDOM from "react-dom";
 import firebase from "../../Firebase";
 import { Link } from "react-router-dom";
@@ -51,7 +51,7 @@ class StepsShow extends Component {
       steps &&
       steps.map(step => {
         return step.overviewID === this.props.overviewID ? (
-          <div className="mt-4">
+          <Fragment>
             <ul className="timeline">
               <li>
                 <label className="label">
@@ -77,11 +77,11 @@ class StepsShow extends Component {
                   {step.authorID === auth.uid ? (
                     <div className="text-right">
                       {/* display edit form */}
-                      <Link
+                      {/* <Link
                         onClick={() => StepEdit(step, onChange, this.state)}
                       >
                         <FontAwesomeIcon icon={faPencilAlt} />
-                      </Link>
+                      </Link> */}
                       <Link
                         className="ml-3"
                         onClick={e => handleDelete(step.id)}
@@ -93,10 +93,10 @@ class StepsShow extends Component {
                 </div>
               </li>
             </ul>
-          </div>
+          </Fragment>
         ) : null;
       });
-    return <div>{stepNodes}</div>;
+    return <div className="mt-4">{stepNodes}</div>;
   }
 }
 

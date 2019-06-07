@@ -84,6 +84,13 @@ class Navbar extends Component {
         <div className="container">
           <Link to="/" className="navbar-brand mb-0 h1">
             Devmap
+            <Twemoji
+              style={{ display: "inline" }}
+              options={{ className: "twemoji" }}
+              className="mr-3"
+            >
+              ‍‍👨‍💻👩‍💻
+            </Twemoji>
           </Link>
           {links}
         </div>

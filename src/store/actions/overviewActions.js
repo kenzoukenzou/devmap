@@ -8,7 +8,7 @@ export const createOverview = overview => {
       .collection("overviews")
       .add({
         ...overview,
-        authorName: profile.name,
+        authorName: profile.displayName,
         authorID: authorId,
         createdAt: new Date()
       })
