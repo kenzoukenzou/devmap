@@ -21,19 +21,24 @@ class App extends Component {
           {/* Setting OGP */}
           <Helmet
             meta={[
-              { name: "twitter:card", content: "summary_large_image" },
+              // summary_large_image
+              { name: "twitter:card", content: "summary" },
+              { name: "twitter:site", content: "@kenzoooooB" },
               { name: "twitter:title", content: "Devmap" },
               {
                 name: "twitter:description",
                 content: "独学ロードマップ共有サービス"
               },
-              { name: "twitter:image", content: "http://path/to/image" },
+              { name: "twitter:image", content: defaultOGP },
               {
                 property: "og:title",
                 content: "Devmap | 独学ロードマップ共有サービス"
               },
               { property: "og:type", content: "website" },
-              { property: "og:url", content: "http://path/to/this/url" },
+              {
+                property: "og:url",
+                content: "https://devmap-a45b5.firebaseapp.com/"
+              },
               { property: "og:image", content: defaultOGP },
               {
                 property: "og:description",

@@ -89,7 +89,7 @@ class Navbar extends Component {
               options={{ className: "twemoji" }}
               className="mr-3"
             >
-              ‍‍👨‍💻👩‍💻
+              ‍‍👨‍💻
             </Twemoji>
           </Link>
           {links}
