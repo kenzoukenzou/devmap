@@ -18,38 +18,6 @@ class App extends Component {
       <BrowserRouter>
         <div className="App">
           <Navbar />
-          {/* Setting OGP */}
-          <Helmet
-            meta={[
-              // summary_large_image
-              { name: "twitter:card", content: "summary" },
-              { name: "twitter:site", content: "@kenzoooooB" },
-              { name: "twitter:title", content: "Devmap" },
-              {
-                name: "twitter:description",
-                content: "独学ロードマップ共有サービス"
-              },
-              { name: "twitter:image", content: defaultOGP },
-              {
-                property: "og:title",
-                content: "Devmap | 独学ロードマップ共有サービス"
-              },
-              { property: "og:type", content: "website" },
-              {
-                property: "og:url",
-                content: "https://devmap-a45b5.firebaseapp.com/"
-              },
-              { property: "og:image", content: defaultOGP },
-              {
-                property: "og:description",
-                content: "独学ロードマップ共有サービス"
-              },
-              {
-                property: "og:site_name",
-                content: "Devmap | 独学ロードマップ共有サービス"
-              }
-            ]}
-          />
           <div className="container">
             <Switch>
               <Route exact path="/" component={Overviews} />
