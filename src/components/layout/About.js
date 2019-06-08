@@ -22,7 +22,9 @@ class About extends Component {
             error={() => <div>Error</div>}
           />
           <h4 style={{ fontSize: "1.2rem" }}>
-            プログラミング独学ロードマップ共有サービス
+            プログラミング独学ロードマップ
+            <br />
+            共有サービス
           </h4>
           <p className="description">
             Devmapは「プログラミング独学ロードマップ」

@@ -36,6 +36,8 @@ class Navbar extends Component {
 
   render() {
     const { auth, user } = this.props;
+    const url = window.location.pathname;
+
     const links = auth.uid ? (
       <div className="text-right">
         {user ? (
@@ -72,9 +74,11 @@ class Navbar extends Component {
       </div>
     ) : (
       <div className="text-right">
-        <Link className="btn btn-primary ml-2" to="/login">
-          はじめる
-        </Link>
+        {url == "/login" ? null : (
+          <Link className="btn btn-primary ml-2" to="/login">
+            はじめる
+          </Link>
+        )}
       </div>
     );
 
