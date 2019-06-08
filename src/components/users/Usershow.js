@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { unsubscribe } from "../../store/actions/authActions";
 import Twemoji from "react-twemoji";
 import Helmet from "react-helmet";
+import Skeleton from "react-loading-skeleton";
 
 class UserShow extends Component {
   onClick = e => {
@@ -53,12 +54,14 @@ class UserShow extends Component {
             <Fragment>
               <h6 className="mt-1">{user.displayName}</h6>
               <Helmet>
-                {/* <title>{user.name}さんのプロフィール | Devmap</title> */}
+                <title>{user.displayName}さんのプロフィール | Devmap</title>
               </Helmet>
             </Fragment>
           ) : null}
         </div>
-        {overviewNodes}
+        {overviewNodes || (
+          <Skeleton className="wrapper" height={100} count={3} />
+        )}
       </Fragment>
     );
   }

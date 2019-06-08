@@ -7,7 +7,6 @@ import { firestoreConnect } from "react-redux-firebase";
 import { compose } from "redux";
 import uuid from "uuid";
 import { withRouter } from "react-router";
-import ToggleMenu from "./ToggleMenu";
 import { Dropdown } from "react-bootstrap";
 
 class CustomToggle extends React.Component {

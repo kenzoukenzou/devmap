@@ -86,9 +86,58 @@
         font-weight: bold;
         line-height: 1.5;
       }
+
+      /* Login Page */
       .twitter-btn {
         background-color: #00aced !important;
         color: white !important;
+      }
+      .btn-sticky {
+        display: block;
+        width: 150px;
+        margin: 50px auto;
+        padding: 0.5em 1em;
+        text-decoration: none;
+        background: #f7f7f7;
+        border-left: solid 6px #ff7c5c; /*左線*/
+        color: #ff7c5c; /*文字色*/
+        font-weight: bold;
+        box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.29);
+      }
+      .btn-sticky:active {
+        box-shadow: inset 0 0 2px rgba(128, 128, 128, 0.1);
+        transform: translateY(2px);
+      }
+      .description {
+        color: rgba(0, 0, 0, 0.6);
+        line-height: 1.9;
+        font-size: 0.93em;
+      }
+      /* About Page */
+      .btn-border-bottom {
+        position: relative;
+        display: inline-block;
+        font-weight: bold;
+        padding: 0.25em 0;
+        text-decoration: none;
+        color: #67c5ff;
+      }
+
+      .btn-border-bottom:before {
+        position: absolute;
+        content: "";
+        width: 100%;
+        height: 4px;
+        top: 100%;
+        left: 0;
+        border-radius: 3px;
+        background: #67c5ff;
+        transition: 0.2s;
+      }
+
+      .btn-border-bottom:hover:before {
+        top: -webkit-calc(100% - 3px);
+        top: calc(100% - 3px);
       }
     </style>
   </head>

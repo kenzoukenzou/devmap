@@ -3,13 +3,13 @@ import { connect } from "react-redux";
 import { signIn } from "../../store/actions/authActions";
 import { Redirect } from "react-router-dom";
 import firebase from "../../Firebase";
-import { loginwithGoogle } from "../../store/actions/authActions";
 import loginImage from "../../loginImage.png";
 import Helmet from "react-helmet";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTwitter } from "@fortawesome/free-brands-svg-icons";
 import { faFacebookF } from "@fortawesome/free-brands-svg-icons";
 import { faGoogle } from "@fortawesome/free-brands-svg-icons";
+import { Link } from "react-router-dom";
 
 class Login extends Component {
   state = {
@@ -28,29 +28,40 @@ class Login extends Component {
     this.props.signIn(this.state);
   };
 
+  loginwithGoogle() {
+    const provider = new firebase.auth.GoogleAuthProvider();
+    firebase
+      .auth()
+      .signInWithPopup(provider)
+      .then(() => {
+        return <Redirect to="/" />;
+      });
+  }
+
   loginwithTwitter() {
     const provider = new firebase.auth.TwitterAuthProvider();
-    firebase.auth().signInWithRedirect(provider);
+    firebase.auth().signInWithPopup(provider);
   }
 
   loginwithFacebook() {
     const provider = new firebase.auth.FacebookAuthProvider();
-    firebase.auth().signInWithRedirect(provider);
+    firebase.auth().signInWithPopup(provider);
   }
 
   render() {
     const { authError, auth } = this.props;
     if (auth.uid) return <Redirect to="/" />;
     return (
-      <div className="container text-center mt-5">
+      <div className="text-center mt-5">
         <Helmet>
           <title>ログイン | Devmap</title>
         </Helmet>
         <h3>Let's get started</h3>
         <img style={{ width: "300px" }} src={loginImage} alt="login_imag" />
+
         <div style={{ margin: "0 auto" }}>
           <button
-            onClick={this.props.loginwithGoogle}
+            onClick={this.loginwithGoogle}
             className="btn btn-danger mr-1"
           >
             <FontAwesomeIcon icon={faGoogle} /> Google
@@ -64,6 +75,10 @@ class Login extends Component {
           <button className="btn twitter-btn" onClick={this.loginwithTwitter}>
             <FontAwesomeIcon icon={faTwitter} /> Twitter
           </button>
+
+          <Link to="/about" class="btn-sticky">
+            Devmapとは？
+          </Link>
         </div>
       </div>
     );
@@ -80,8 +95,7 @@ const mapStateToProps = state => {
 // Call ActionCreater
 const mapDispatchToProps = dispatch => {
   return {
-    signIn: creds => dispatch(signIn(creds)),
-    loginwithGoogle: () => dispatch(loginwithGoogle())
+    signIn: creds => dispatch(signIn(creds))
   };
 };
 

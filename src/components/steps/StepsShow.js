@@ -9,8 +9,7 @@ import { compose } from "redux";
 
 import { deleteStep } from "../../store/actions/stepActions";
 import { editStep } from "../../store/actions/stepActions";
-
-import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import Skeleton from "react-loading-skeleton";
 
 class StepsShow extends Component {
   state = {
