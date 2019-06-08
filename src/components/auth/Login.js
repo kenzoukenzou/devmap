@@ -10,6 +10,8 @@ import { faTwitter } from "@fortawesome/free-brands-svg-icons";
 import { faFacebookF } from "@fortawesome/free-brands-svg-icons";
 import { faGoogle } from "@fortawesome/free-brands-svg-icons";
 import { Link } from "react-router-dom";
+import ImageLoader from "react-loading-image";
+import Skeleton from "react-loading-skeleton";
 
 class Login extends Component {
   state = {
@@ -28,20 +30,15 @@ class Login extends Component {
     this.props.signIn(this.state);
   };
 
-  loginwithGoogle() {
+  loginwithGoogle = () => {
     const provider = new firebase.auth.GoogleAuthProvider();
-    firebase
-      .auth()
-      .signInWithPopup(provider)
-      .then(() => {
-        return <Redirect to="/" />;
-      });
-  }
+    firebase.auth().signInWithPopup(provider);
+  };
 
-  loginwithTwitter() {
+  loginwithTwitter = () => {
     const provider = new firebase.auth.TwitterAuthProvider();
     firebase.auth().signInWithPopup(provider);
-  }
+  };
 
   loginwithFacebook() {
     const provider = new firebase.auth.FacebookAuthProvider();
@@ -57,8 +54,13 @@ class Login extends Component {
           <title>ログイン | Devmap</title>
         </Helmet>
         <h3>Let's get started</h3>
-        <img style={{ width: "300px" }} src={loginImage} alt="login_imag" />
-
+        {/* <img style={{ width: "300px" }} src={loginImage} alt="login_imag" /> */}
+        <ImageLoader
+          src={loginImage}
+          style={{ width: "300px", height: "280px" }}
+          loading={() => <Skeleton circle={true} height={220} width={300} />}
+          error={() => <div>Error</div>}
+        />
         <div style={{ margin: "0 auto" }}>
           <button
             onClick={this.loginwithGoogle}
@@ -76,7 +78,7 @@ class Login extends Component {
             <FontAwesomeIcon icon={faTwitter} /> Twitter
           </button>
 
-          <Link to="/about" class="btn-sticky">
+          <Link to="/about" className="btn-sticky">
             Devmapとは？
           </Link>
         </div>

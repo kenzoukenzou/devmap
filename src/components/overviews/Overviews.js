@@ -5,7 +5,7 @@ import { firestoreConnect } from "react-redux-firebase";
 import { compose } from "redux";
 import Twemoji from "react-twemoji";
 import Helmet from "react-helmet";
-import CircularProgress from "@material-ui/core/CircularProgress";
+import Skeleton from "react-loading-skeleton";
 
 class Overviews extends Component {
   render() {
@@ -38,9 +38,7 @@ class Overviews extends Component {
             </div>
           ))
         ) : (
-          <div className="container text-center">
-            <CircularProgress />
-          </div>
+          <Skeleton className="ml-5 wrapper" height={200} count={3} />
         )}
       </div>
     );
