@@ -6,6 +6,10 @@ import firebase from "../../Firebase";
 import { loginwithGoogle } from "../../store/actions/authActions";
 import loginImage from "../../loginImage.png";
 import Helmet from "react-helmet";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTwitter } from "@fortawesome/free-brands-svg-icons";
+import { faFacebookF } from "@fortawesome/free-brands-svg-icons";
+import { faGoogle } from "@fortawesome/free-brands-svg-icons";
 
 class Login extends Component {
   state = {
@@ -24,8 +28,13 @@ class Login extends Component {
     this.props.signIn(this.state);
   };
 
-  login() {
-    const provider = new firebase.auth.GoogleAuthProvider();
+  loginwithTwitter() {
+    const provider = new firebase.auth.TwitterAuthProvider();
+    firebase.auth().signInWithRedirect(provider);
+  }
+
+  loginwithFacebook() {
+    const provider = new firebase.auth.FacebookAuthProvider();
     firebase.auth().signInWithRedirect(provider);
   }
 
@@ -39,13 +48,23 @@ class Login extends Component {
         </Helmet>
         <h3>Let's get started</h3>
         <img style={{ width: "300px" }} src={loginImage} alt="login_imag" />
-        <button
-          style={{ display: "block", margin: "0 auto" }}
-          onClick={this.props.loginwithGoogle}
-          className="btn btn-danger"
-        >
-          Googleログイン
-        </button>
+        <div style={{ margin: "0 auto" }}>
+          <button
+            onClick={this.props.loginwithGoogle}
+            className="btn btn-danger mr-1"
+          >
+            <FontAwesomeIcon icon={faGoogle} /> Google
+          </button>
+          <button
+            className="btn btn-primary mr-1"
+            onClick={this.loginwithFacebook}
+          >
+            <FontAwesomeIcon icon={faFacebookF} /> Facebook
+          </button>
+          <button className="btn twitter-btn" onClick={this.loginwithTwitter}>
+            <FontAwesomeIcon icon={faTwitter} /> Twitter
+          </button>
+        </div>
       </div>
     );
   }

@@ -78,9 +78,6 @@ export const unsubscribe = id => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
     const firestore = getFirestore();
     const firebase = getFirebase();
-    const ownProjects = firestore
-      .collection("projects")
-      .where("authorID", "==", id);
 
     firestore
       .collection("users")
