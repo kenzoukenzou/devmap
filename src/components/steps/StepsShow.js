@@ -1,12 +1,8 @@
 import React, { Component, Fragment } from "react";
-import ReactDOM from "react-dom";
-import firebase from "../../Firebase";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLink } from "@fortawesome/free-solid-svg-icons";
-import { faPencilAlt } from "@fortawesome/free-solid-svg-icons";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
-
 import { connect } from "react-redux";
 import { firestoreConnect } from "react-redux-firebase";
 import { compose } from "redux";
@@ -14,7 +10,7 @@ import { compose } from "redux";
 import { deleteStep } from "../../store/actions/stepActions";
 import { editStep } from "../../store/actions/stepActions";
 
-import StepEdit from "./StepEdit";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 
 class StepsShow extends Component {
   state = {
@@ -76,12 +72,6 @@ class StepsShow extends Component {
                   <p style={{ fontSize: "0.9em" }}>{step.description}</p>
                   {step.authorID === auth.uid ? (
                     <div className="text-right">
-                      {/* display edit form */}
-                      {/* <Link
-                        onClick={() => StepEdit(step, onChange, this.state)}
-                      >
-                        <FontAwesomeIcon icon={faPencilAlt} />
-                      </Link> */}
                       <Link
                         className="ml-3"
                         onClick={e => handleDelete(step.id)}
@@ -96,7 +86,13 @@ class StepsShow extends Component {
           </Fragment>
         ) : null;
       });
-    return <div className="mt-4">{stepNodes}</div>;
+    return (
+      <div className="mt-4">
+        {stepNodes || (
+          <Skeleton className="ml-5 wrapper" height={200} count={3} />
+        )}
+      </div>
+    );
   }
 }
 

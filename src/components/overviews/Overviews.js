@@ -1,11 +1,11 @@
 import React, { Component, Fragment } from "react";
 import { Link } from "react-router-dom";
-import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { firestoreConnect } from "react-redux-firebase";
 import { compose } from "redux";
 import Twemoji from "react-twemoji";
 import Helmet from "react-helmet";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 class Overviews extends Component {
   render() {
@@ -18,7 +18,7 @@ class Overviews extends Component {
           <title>Devmap | 独学ロードマップ共有サービス</title>
           <meta name="description" content="独学ロードマップ共有サービス" />
         </Helmet>
-        {overviews &&
+        {overviews ? (
           overviews.map(overview => (
             <div className="wrapper">
               <h5>
@@ -36,7 +36,12 @@ class Overviews extends Component {
                 {overview.authorName}
               </Link>
             </div>
-          ))}
+          ))
+        ) : (
+          <div className="container text-center">
+            <CircularProgress />
+          </div>
+        )}
       </div>
     );
   }
