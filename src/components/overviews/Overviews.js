@@ -26,13 +26,12 @@ class Overviews extends Component {
                 alt="eyecatchImg"
                 className="float-left eyecatch"
               />
-              <div className="float-left ml-5 mt-5">
+              <div className="float-left ml-5 mt-5 summary">
                 <h5>
                   <Link to={`/overviews/${overview.key}`}>
                     {overview.title}
                   </Link>
                 </h5>
-
                 <Link to={`/users/${overview.authorID}`}>
                   <img
                     src={overview.authorImage}

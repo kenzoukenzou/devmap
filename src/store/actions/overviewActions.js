@@ -34,7 +34,10 @@ export const editOverview = overview => {
       .doc(overview.key)
       .set({
         ...overview,
-        createdAt: new Date()
+        createdAt: new Date(),
+        eyeCatchImg: `https://res.cloudinary.com/dynugozpy/image/upload/l_text:Sawarabi%20Gothic_50_bold:${
+          overview.title
+        },co_rgb:333,w_500,c_fit/v1560056946/Dinamic_OGP_t8joyp.png`
       })
       .then(() => {
         dispatch({ type: "EDIT_OVERVIEW", overview });

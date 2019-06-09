@@ -20,13 +20,17 @@ class UserShow extends Component {
       overviews &&
       overviews.map(overview => {
         return overview.authorID === this.props.match.params.id ? (
-          <div className="overview-wrapper">
-            <h5>
-              <Link to={`/overviews/${overview.key}`}>
-                {overview.title}
-                <br />
-              </Link>
-            </h5>
+          <div className="overview_card clearfix">
+            <img
+              src={overview.eyeCatchImg}
+              alt="eyecatchImg"
+              className="float-left eyecatch"
+            />
+            <div className="float-left ml-5 mt-5 summary">
+              <h5>
+                <Link to={`/overviews/${overview.key}`}>{overview.title}</Link>
+              </h5>
+            </div>
           </div>
         ) : null;
       });
@@ -41,7 +45,7 @@ class UserShow extends Component {
 
     return (
       <Fragment>
-        <div className="text-center mt-5">
+        <div className="text-center mt-5 mb-5">
           {user ? (
             <Fragment>
               <img

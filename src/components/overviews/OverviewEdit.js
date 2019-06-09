@@ -10,7 +10,8 @@ class OverviewEdit extends Component {
     description: "",
     key: "",
     authorName: "",
-    authorID: ""
+    authorID: "",
+    authorImage: ""
   };
 
   componentDidMount() {
@@ -26,7 +27,8 @@ class OverviewEdit extends Component {
           description: overview.description,
           key: this.props.match.params.id,
           authorName: overview.authorName,
-          authorID: this.props.auth.uid
+          authorID: this.props.auth.uid,
+          authorImage: overview.authorImage
         });
       } else {
         console.log("ERROR");
@@ -50,7 +52,7 @@ class OverviewEdit extends Component {
     const { auth } = this.props;
     if (!auth.uid) return <Redirect to="/login" />;
     return (
-      <div className="container">
+      <div className="container mt-4 overview-wrapper">
         <div className="panel panel-default">
           <div className="panel-body">
             <form onSubmit={this.onSubmit}>

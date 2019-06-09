@@ -35,11 +35,15 @@
         box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
         background: #fff;
       }
-
       .overview-wrapper {
         background: white;
         padding: 3rem;
         box-shadow: 0px 9px 9px rgba(80, 80, 70, 0.1);
+      }
+      @media (max-width: 780px) {
+        .overview-wrapper {
+          padding: 0.7rem;
+        }
       }
 
       /* handle eyecatch */
@@ -86,7 +90,7 @@
       }
       ul.timeline > li {
         margin: -10px 0;
-        padding-left: 20px;
+        padding-left: 8px;
       }
       ul.timeline > li:before {
         content: " ";
@@ -123,7 +127,7 @@
       .overview_card {
         background-color: white !important;
         border-radius: 2px;
-        padding: 2em;
+        padding: 2em 2em 2em 0;
         margin-bottom: 1em;
         box-shadow: 0px 9px 9px rgba(80, 80, 70, 0.1);
       }

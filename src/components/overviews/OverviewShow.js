@@ -15,14 +15,18 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPencilAlt } from "@fortawesome/free-solid-svg-icons";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
+// others
 import Helmet from "react-helmet";
+import { confirmAlert } from "react-confirm-alert";
 
 class OverviewShow extends Component {
   render() {
     const { auth, overviews } = this.props;
 
+    // Delete this overview
     const click = (e, props) => {
       e.preventDefault();
+
       this.props.deleteoverview(props);
       this.props.history.push("/");
     };
@@ -37,15 +41,24 @@ class OverviewShow extends Component {
                 {overview.title} | {overview.authorName}さんのロードマップ
               </title>
             </Helmet>
-            <h4>{overview.title}</h4>
-            <Link to={`/users/${overview.authorID}`}>
+            <div style={{ padding: "2rem" }}>
               <img
-                src={overview.authorImage}
-                style={{ width: "30px", height: "30px", borderRadius: "50%" }}
-                alt="authorImg"
-              />{" "}
-              {overview.authorName}
-            </Link>
+                src={overview.eyeCatchImg}
+                style={{ width: "100%", display: "block", margin: "0 auto" }}
+                alt="eyeCatch"
+              />
+              <p className="text-muted" style={{ fontSize: "0.9rem" }}>
+                {overview.description}
+              </p>
+              <Link to={`/users/${overview.authorID}`}>
+                <img
+                  src={overview.authorImage}
+                  style={{ width: "30px", height: "30px", borderRadius: "50%" }}
+                  alt="authorImg"
+                />{" "}
+                {overview.authorName}
+              </Link>
+            </div>
             {/* display edit & delete links if author */}
             {overview.authorID === auth.uid ? (
               <div className="text-right pr-3">
@@ -53,7 +66,14 @@ class OverviewShow extends Component {
                   <FontAwesomeIcon icon={faPencilAlt} />
                 </Link>
 
-                <Link className="ml-3" onClick={e => click(e, overview.id)}>
+                {/* Delete with Confirmation */}
+                <Link
+                  className="ml-3"
+                  onClick={e => {
+                    if (window.confirm("本当に削除しますか?"))
+                      click(e, overview.id);
+                  }}
+                >
                   <FontAwesomeIcon icon={faTrash} />
                 </Link>
               </div>
