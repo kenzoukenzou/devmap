@@ -82,7 +82,7 @@ class Navbar extends Component {
     );
 
     return (
-      <nav className="navbar navbar-light bg-light">
+      <nav className="navbar navbar-light bg-white header-navi">
         <div className="container">
           <Link to="/" className="navbar-brand mb-0 h1">
             Devmap

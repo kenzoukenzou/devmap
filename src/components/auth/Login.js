@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import { signIn } from "../../store/actions/authActions";
 import { Redirect } from "react-router-dom";
@@ -46,12 +46,20 @@ class Login extends Component {
     const { auth } = this.props;
     if (auth.uid) return <Redirect to="/" />;
     if (this.state.clicked) {
-      return <Skeleton className="ml-5 wrapper" height={200} count={3} />;
+      return (
+        <Fragment>
+          <Helmet>
+            <style>{"body { background-color: white!important; }"}</style>
+          </Helmet>
+          <Skeleton className="ml-5 wrapper" height={200} count={3} />
+        </Fragment>
+      );
     } else {
       return (
         <div className="text-center mt-5 mb-3">
           <Helmet>
             <title>ログイン | Devmap</title>
+            <style>{"body { background-color: white!important; }"}</style>
           </Helmet>
           <h3>Let's get started</h3>
           {/* <img style={{ width: "300px" }} src={loginImage} alt="login_imag" /> */}

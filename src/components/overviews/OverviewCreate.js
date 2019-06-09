@@ -27,7 +27,7 @@ class OverviewCreate extends Component {
     const { auth } = this.props;
     if (!auth.uid) return <Redirect to="/login" />;
     return (
-      <div className="container">
+      <div className="container mt-4 overview-wrapper">
         <div className="panel panel-default">
           <div className="panel-body">
             <form onSubmit={this.onSubmit}>

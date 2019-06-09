@@ -4,7 +4,6 @@ import { firestoreConnect } from "react-redux-firebase";
 import { compose } from "redux";
 import { Link } from "react-router-dom";
 import { unsubscribe } from "../../store/actions/authActions";
-import Twemoji from "react-twemoji";
 import Helmet from "react-helmet";
 import Skeleton from "react-loading-skeleton";
 
@@ -21,7 +20,7 @@ class UserShow extends Component {
       overviews &&
       overviews.map(overview => {
         return overview.authorID === this.props.match.params.id ? (
-          <div className="wrapper">
+          <div className="overview-wrapper">
             <h5>
               <Link to={`/overviews/${overview.key}`}>
                 {overview.title}

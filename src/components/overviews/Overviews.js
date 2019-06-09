@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { firestoreConnect } from "react-redux-firebase";
 import { compose } from "redux";
-import Twemoji from "react-twemoji";
 import Helmet from "react-helmet";
 import Skeleton from "react-loading-skeleton";
+import { Facebook } from "react-content-loader";
 
 class Overviews extends Component {
   render() {
@@ -20,25 +20,37 @@ class Overviews extends Component {
         </Helmet>
         {overviews ? (
           overviews.map(overview => (
-            <div className="overview_card">
-              <h5>
-                <Link to={`/overviews/${overview.key}`}>{overview.title}</Link>
-              </h5>
+            <div className="overview_card clearfix">
+              <img
+                src={overview.eyeCatchImg}
+                alt="eyecatchImg"
+                className="float-left eyecatch"
+              />
+              <div className="float-left ml-5 mt-5">
+                <h5>
+                  <Link to={`/overviews/${overview.key}`}>
+                    {overview.title}
+                  </Link>
+                </h5>
 
-              <Link to={`/users/${overview.authorID}`}>
-                <Twemoji
-                  style={{ display: "inline-block" }}
-                  options={{ className: "twemoji" }}
-                  className="mr-1"
-                >
-                  😉
-                </Twemoji>
-                {overview.authorName}
-              </Link>
+                <Link to={`/users/${overview.authorID}`}>
+                  <img
+                    src={overview.authorImage}
+                    style={{
+                      width: "30px",
+                      height: "30px",
+                      borderRadius: "50%"
+                    }}
+                    alt="authorImg"
+                  />{" "}
+                  {overview.authorName}
+                </Link>
+              </div>
             </div>
           ))
         ) : (
-          <Skeleton className="ml-5 wrapper" height={200} count={3} />
+          // <Skeleton className="ml-5 overview_card" height={200} count={3} />
+          <Facebook />
         )}
       </div>
     );

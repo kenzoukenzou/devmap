@@ -9,7 +9,11 @@ export const createOverview = overview => {
       .add({
         ...overview,
         authorName: profile.displayName,
+        authorImage: profile.avatarUrl,
         authorID: authorId,
+        eyeCatchImg: `https://res.cloudinary.com/dynugozpy/image/upload/l_text:Sawarabi%20Gothic_50_bold:${
+          overview.title
+        },co_rgb:333,w_500,c_fit/v1560056946/Dinamic_OGP_t8joyp.png`,
         createdAt: new Date()
       })
       .then(() => {

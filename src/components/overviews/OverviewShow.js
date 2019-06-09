@@ -39,13 +39,11 @@ class OverviewShow extends Component {
             </Helmet>
             <h4>{overview.title}</h4>
             <Link to={`/users/${overview.authorID}`}>
-              <Twemoji
-                style={{ display: "inline-block" }}
-                options={{ className: "twemoji" }}
-                className="mr-1"
-              >
-                😉
-              </Twemoji>
+              <img
+                src={overview.authorImage}
+                style={{ width: "30px", height: "30px", borderRadius: "50%" }}
+                alt="authorImg"
+              />{" "}
               {overview.authorName}
             </Link>
             {/* display edit & delete links if author */}
@@ -69,7 +67,7 @@ class OverviewShow extends Component {
       });
 
     // if (!auth.uid) return <Redirect to="/login" />;
-    return <div className="mt-4">{overviewNodes}</div>;
+    return <div className="mt-4 overview-wrapper">{overviewNodes}</div>;
   }
 }
 

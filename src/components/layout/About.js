@@ -12,6 +12,7 @@ class About extends Component {
       <Fragment>
         <Helmet>
           <title>Devmapとは？</title>
+          <style>{"body { background-color: white!important; }"}</style>
         </Helmet>
         <div className="text-center mt-5">
           {/* <img style={{ width: "300px" }} src={aboutImg} alt="about_imag" /> */}

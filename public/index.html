@@ -24,6 +24,35 @@
     <meta name="twitter:site" content="@kenzoooooB" />
 
     <style>
+      /* change basic styles */
+      body {
+        background-color: #eaedf2 !important;
+      }
+      a:hover {
+        text-decoration: none !important;
+      }
+      .header-navi {
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+        background: #fff;
+      }
+
+      .overview-wrapper {
+        background: white;
+        padding: 3rem;
+        box-shadow: 0px 9px 9px rgba(80, 80, 70, 0.1);
+      }
+
+      /* handle eyecatch */
+      .eyecatch {
+        width: 30%;
+      }
+
+      @media (max-width: 992px) {
+        .eyecatch {
+          width: 100%;
+        }
+      }
+
       /* twemoji */
       .nav-twemoji {
         height: 40px;
@@ -92,11 +121,11 @@
         line-height: 1.5;
       }
       .overview_card {
+        background-color: white !important;
         border-radius: 2px;
         padding: 2em;
         margin-bottom: 1em;
-        box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.12),
-          0 2px 3px 0 rgba(0, 0, 0, 0.22);
+        box-shadow: 0px 9px 9px rgba(80, 80, 70, 0.1);
       }
 
       /* Login Page */
