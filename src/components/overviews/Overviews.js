@@ -20,7 +20,7 @@ class Overviews extends Component {
         </Helmet>
         {overviews ? (
           overviews.map(overview => (
-            <div className="wrapper">
+            <div className="overview_card">
               <h5>
                 <Link to={`/overviews/${overview.key}`}>{overview.title}</Link>
               </h5>

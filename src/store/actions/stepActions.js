@@ -24,10 +24,9 @@ export const editStep = step => {
 
     firestore
       .collection("steps")
-      .doc(step.key)
+      .doc(step.id)
       .set({
         ...step
-        // createdAt: new Date()
       })
       .then(() => {
         dispatch({ type: "EDIT_STEP", step });

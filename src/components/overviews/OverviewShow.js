@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import { firestoreConnect } from "react-redux-firebase";
 import { compose } from "redux";
 import Twemoji from "react-twemoji";
-import CircularProgress from "@material-ui/core/CircularProgress";
 
 //action creater
 import { deleteOverview } from "../../store/actions/overviewActions";

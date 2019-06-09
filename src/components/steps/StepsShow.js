@@ -1,44 +1,67 @@
 import React, { Component, Fragment } from "react";
 import { Link } from "react-router-dom";
+
+// fontawesome
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLink } from "@fortawesome/free-solid-svg-icons";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faPencilAlt } from "@fortawesome/free-solid-svg-icons";
+
+// handle redux
 import { connect } from "react-redux";
 import { firestoreConnect } from "react-redux-firebase";
 import { compose } from "redux";
-
 import { deleteStep } from "../../store/actions/stepActions";
 import { editStep } from "../../store/actions/stepActions";
+
+// others
 import Skeleton from "react-loading-skeleton";
+import { Modal } from "react-bootstrap";
 
 class StepsShow extends Component {
-  state = {
-    title: "",
-    link: "",
-    description: "",
-    ShowEditForm: false
+  constructor(props) {
+    super(props);
+
+    this.handleShow = this.handleShow.bind(this);
+    this.handleClose = this.handleClose.bind(this);
+
+    this.state = {
+      title: "",
+      description: "",
+      link: "",
+      createdAt: "",
+      show: false
+    };
+  }
+
+  // handel modal window
+  handleShow = step => {
+    this.setState({ ...step, show: true });
+  };
+
+  handleClose() {
+    this.setState({ show: false });
+  }
+
+  onChange = e => {
+    const state = this.state;
+    state[e.target.name] = e.target.value;
+    this.setState(state);
   };
 
   onSubmit = e => {
     e.preventDefault();
-    this.props.editStep(this.state); // ①createProject Actionにstateを渡す
+    this.props.editStep(this.state);
+    this.setState({ show: false });
   };
 
   render() {
     const { steps, auth } = this.props;
+    const targetStep = this.state; // 編集対象のStep
 
     // handle delete
     const handleDelete = id => {
       this.props.deleteStep(id);
-    };
-
-    // handle Change edit form
-    const onChange = e => {
-      // e.target.name.value = e.target.value;
-      const state = this.state;
-      state[e.target.name] = e.target.value;
-      console.log(state);
-      this.setState(state);
     };
 
     let stepCount = 0;
@@ -55,8 +78,6 @@ class StepsShow extends Component {
                     stepCount++;
                   })()}
                 </label>
-
-                {/* display editform or not */}
                 <div className="wrapper" id={step.id}>
                   <h5>
                     {step.title}
@@ -69,8 +90,15 @@ class StepsShow extends Component {
                     ) : null}
                   </h5>
                   <p style={{ fontSize: "0.9em" }}>{step.description}</p>
+                  {/* display delete button if author */}
                   {step.authorID === auth.uid ? (
                     <div className="text-right">
+                      <Link
+                        className="mr-3"
+                        onClick={e => this.handleShow(step)}
+                      >
+                        <FontAwesomeIcon icon={faPencilAlt} />
+                      </Link>
                       <Link
                         className="ml-3"
                         onClick={e => handleDelete(step.id)}
@@ -87,6 +115,46 @@ class StepsShow extends Component {
       });
     return (
       <div className="mt-4">
+        <Modal
+          size="lg"
+          centered
+          show={this.state.show}
+          onHide={this.handleClose}
+        >
+          <Modal.Header closeButton>
+            <Modal.Title id="contained-modal-title-vcenter">編集</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <form onSubmit={this.onSubmit}>
+              <input
+                type="text"
+                className="form-control"
+                name="title"
+                value={targetStep.title}
+                onChange={this.onChange}
+                // placeholder="Title"
+              />
+              <input
+                type="text"
+                className="form-control"
+                name="link"
+                value={targetStep.link}
+                onChange={this.onChange}
+              />
+              <textarea
+                type="text"
+                className="form-control"
+                name="description"
+                value={targetStep.description}
+                cols="80"
+                rows="3"
+                onChange={this.onChange}
+              />
+              <button className="btn btn-primary">Edit</button>
+            </form>
+          </Modal.Body>
+          <Modal.Footer />
+        </Modal>
         {stepNodes || (
           <Skeleton className="ml-5 wrapper" height={200} count={3} />
         )}

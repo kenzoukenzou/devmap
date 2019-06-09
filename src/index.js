@@ -9,10 +9,7 @@ import thunk from "redux-thunk";
 import { reduxFirestore, getFirestore } from "redux-firestore";
 import { reactReduxFirebase, getFirebase } from "react-redux-firebase";
 import fbConfig from "./Firebase";
-import Login from "./components/auth/Login";
 import App from "./App";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
-
 const store = createStore(
   rootReducer,
   compose(

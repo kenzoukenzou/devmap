@@ -43,16 +43,15 @@ class UserShow extends Component {
     return (
       <Fragment>
         <div className="text-center mt-5">
-          <Twemoji
-            style={{ display: "inline-block" }}
-            options={{ className: "nav-twemoji" }}
-            className="mr-3"
-          >
-            😉
-          </Twemoji>
           {user ? (
             <Fragment>
+              <img
+                style={{ width: "100px", height: "100px", borderRadius: "50%" }}
+                src={user.avatarUrl}
+                alt=""
+              />
               <h6 className="mt-1">{user.displayName}</h6>
+
               <Helmet>
                 <title>{user.displayName}さんのプロフィール | Devmap</title>
               </Helmet>

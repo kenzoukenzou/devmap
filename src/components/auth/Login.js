@@ -43,13 +43,13 @@ class Login extends Component {
   };
 
   render() {
-    const { authError, auth } = this.props;
+    const { auth } = this.props;
     if (auth.uid) return <Redirect to="/" />;
     if (this.state.clicked) {
       return <Skeleton className="ml-5 wrapper" height={200} count={3} />;
     } else {
       return (
-        <div className="text-center mt-5">
+        <div className="text-center mt-5 mb-3">
           <Helmet>
             <title>ログイン | Devmap</title>
           </Helmet>

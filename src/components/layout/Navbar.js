@@ -42,17 +42,16 @@ class Navbar extends Component {
       <div className="text-right">
         {user ? (
           <div>
-            <Dropdown style={{ display: "inline-block" }}>
+            <Dropdown className="mr-3" style={{ display: "inline-block" }}>
               <Dropdown.Toggle
                 as={CustomToggle}
                 id="dropdown-custom-components"
               >
-                <Twemoji
-                  options={{ className: "nav-twemoji" }}
-                  className="mr-3"
-                >
-                  😉
-                </Twemoji>
+                <img
+                  src={user.avatarUrl}
+                  style={{ width: "50px", height: "50px", borderRadius: "50%" }}
+                  alt="userIcon"
+                />
               </Dropdown.Toggle>
               <Dropdown.Menu>
                 <Dropdown.Item>
