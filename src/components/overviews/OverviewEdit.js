@@ -11,7 +11,8 @@ class OverviewEdit extends Component {
     key: "",
     authorName: "",
     authorID: "",
-    authorImage: ""
+    authorImage: "",
+    error: ""
   };
 
   componentDidMount() {
@@ -44,12 +45,17 @@ class OverviewEdit extends Component {
 
   onSubmit = e => {
     e.preventDefault();
-    this.props.editOverview(this.state); // ①createProject Actionにstateを渡す
+    if (this.state.title === "")
+      return this.setState({ error: "タイトルを入力してください" });
+    else if (this.state.title.includes("/"))
+      return this.setState({ error: "タイトルに「/」を含めないでください" });
+    else this.props.editOverview(this.state); // ①createProject Actionにstateを渡す
     this.props.history.push("/");
   };
 
   render() {
     const { auth } = this.props;
+    const { error } = this.state;
     if (!auth.uid) return <Redirect to="/login" />;
     return (
       <div className="container mt-4 overview-wrapper">
@@ -57,7 +63,7 @@ class OverviewEdit extends Component {
           <div className="panel-body">
             <form onSubmit={this.onSubmit}>
               <div className="form-group">
-                <label htmlFor="title">Title:</label>
+                <label htmlFor="title">タイトル</label>
                 <input
                   type="text"
                   className="form-control"
@@ -66,9 +72,10 @@ class OverviewEdit extends Component {
                   onChange={this.onChange}
                   placeholder="Title"
                 />
+                {error ? <p className="text-danger">{error}</p> : null}
               </div>
               <div className="form-group">
-                <label htmlFor="description">Description:</label>
+                <label htmlFor="description">概要</label>
                 <input
                   type="text"
                   className="form-control"
