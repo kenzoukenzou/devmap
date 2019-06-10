@@ -54,7 +54,7 @@ class UserShow extends Component {
                 alt=""
               />
               <h6 className="mt-1">{user.displayName}</h6>
-
+              {unsubscribeNodes}
               <Helmet>
                 <title>{user.displayName}さんのプロフィール | Devmap</title>
               </Helmet>

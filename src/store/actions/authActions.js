@@ -1,20 +1,3 @@
-import Firebase from "../../Firebase";
-
-export const signIn = credentials => {
-  return (dispatch, getState, { getFirebase }) => {
-    const firebase = getFirebase();
-    firebase
-      .auth()
-      .signInWithEmailAndPassword(credentials.email, credentials.password)
-      .then(() => {
-        dispatch({ type: "LOGIN_SUCCESS" });
-      })
-      .catch(err => {
-        dispatch({ type: "LOGIN_ERROR", err });
-      });
-  };
-};
-
 export const logout = () => {
   return (dispatch, getState, { getFirebase }) => {
     const firebase = getFirebase();
@@ -65,14 +48,39 @@ export const unsubscribe = id => {
           .auth()
           .currentUser.delete()
           .then(() => {
-            // ownProjects.forEach(project => {
-            //   project.delete();
-            // });
+            // firestore
+            //   .collection("overviews")
+            //   .where("authorID", "==", id)
+            //   .delete()
+            //   .then(() => {
             dispatch({ type: "DELETE_USER", id });
+            // });
           });
       })
       .catch(err => {
         dispatch({ type: "DELETE_USER_ERROR", err });
+      });
+  };
+};
+
+// Login with authentification
+export const loginAuth = res => {
+  return (dispatch, getState, { getFirestore }) => {
+    const firestore = getFirestore();
+    // const authorId = getState().firebase.auth.uid;
+    firestore
+      .collection("users")
+      .doc(res.user.uid)
+      .set({
+        // id: res.user.uid,
+        displayName: res.user.displayName,
+        avatarUrl: res.user.photoURL
+      })
+      .then(() => {
+        dispatch({ type: "LOGIN_SUCCESS" });
+      })
+      .catch(err => {
+        dispatch({ type: "LOGIN_ERROR", err });
       });
   };
 };

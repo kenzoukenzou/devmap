@@ -36,8 +36,7 @@ class Navbar extends Component {
 
   render() {
     const { auth, user } = this.props;
-    const url = window.location.pathname;
-
+    const url = window.location.pathname; //login画面での表示切替
     const links = auth.uid ? (
       <div className="text-right">
         {user ? (
@@ -104,6 +103,11 @@ class Navbar extends Component {
 const mapStateToProps = state => {
   const id = state.firebase.auth.uid;
   const users = state.firestore.data.users;
+  // var user = users.filter(function(element) {
+  //   return (element.id = id);
+  // });
+  // users ? console.log(users) : console.log("");
+  // users & users.map(ele => console.log(ele.id));
   const user = users ? users[id] : null;
   return {
     user: user,

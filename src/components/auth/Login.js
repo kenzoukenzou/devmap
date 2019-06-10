@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
-import { signIn } from "../../store/actions/authActions";
 import { Redirect } from "react-router-dom";
 import firebase from "../../Firebase";
 import loginImage from "../../loginImage.png";
@@ -12,6 +11,7 @@ import { faGoogle } from "@fortawesome/free-brands-svg-icons";
 import { Link } from "react-router-dom";
 import ImageLoader from "react-loading-image";
 import Skeleton from "react-loading-skeleton";
+import { loginAuth } from "../../store/actions/authActions";
 
 class Login extends Component {
   state = {
@@ -23,7 +23,12 @@ class Login extends Component {
       clicked: !this.state.clicked
     });
     const provider = new firebase.auth.GoogleAuthProvider();
-    firebase.auth().signInWithPopup(provider);
+    firebase
+      .auth()
+      .signInWithPopup(provider)
+      .then(response => {
+        this.props.loginAuth(response);
+      });
   };
 
   loginwithTwitter = () => {
@@ -31,7 +36,12 @@ class Login extends Component {
       clicked: !this.state.clicked
     });
     const provider = new firebase.auth.TwitterAuthProvider();
-    firebase.auth().signInWithPopup(provider);
+    firebase
+      .auth()
+      .signInWithPopup(provider)
+      .then(response => {
+        this.props.loginAuth(response);
+      });
   };
 
   loginwithFacebook = () => {
@@ -39,13 +49,19 @@ class Login extends Component {
       clicked: !this.state.clicked
     });
     const provider = new firebase.auth.FacebookAuthProvider();
-    firebase.auth().signInWithPopup(provider);
+    firebase
+      .auth()
+      .signInWithPopup(provider)
+      .then(response => {
+        this.props.loginAuth(response);
+      });
   };
 
   render() {
     const { auth } = this.props;
     if (auth.uid) return <Redirect to="/" />;
     if (this.state.clicked) {
+      // return <Redirect to="/" />;
       return (
         <Fragment>
           <Helmet>
@@ -106,7 +122,7 @@ const mapStateToProps = state => {
 // Call ActionCreater
 const mapDispatchToProps = dispatch => {
   return {
-    signIn: creds => dispatch(signIn(creds))
+    loginAuth: response => dispatch(loginAuth(response))
   };
 };
 

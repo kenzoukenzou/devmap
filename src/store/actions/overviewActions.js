@@ -4,6 +4,9 @@ export const createOverview = overview => {
     const profile = getState().firebase.profile;
     const authorId = getState().firebase.auth.uid;
 
+    // editing(サブコレクションの参照を作成する必要がある)
+    // .collection("users")
+    // .doc(authorId)
     firestore
       .collection("overviews")
       .add({

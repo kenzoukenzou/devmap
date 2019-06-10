@@ -61,8 +61,12 @@ class OverviewShow extends Component {
             </div>
             {/* display edit & delete links if author */}
             {overview.authorID === auth.uid ? (
-              <div className="text-right pr-3">
-                <Link to={`/edit/${overview.id}`} key={overview.id}>
+              <div className="text-right">
+                <Link
+                  to={`/edit/${overview.id}`}
+                  className="mr-4"
+                  key={overview.id}
+                >
                   <FontAwesomeIcon icon={faPencilAlt} />
                 </Link>
 
