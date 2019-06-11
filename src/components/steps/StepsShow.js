@@ -17,6 +17,14 @@ import { editStep } from "../../store/actions/stepActions";
 // others
 import Skeleton from "react-loading-skeleton";
 import { Modal } from "react-bootstrap";
+import {
+  FacebookShareButton,
+  FacebookIcon,
+  TwitterShareButton,
+  TwitterIcon,
+  PocketShareButton,
+  PocketIcon
+} from "react-share";
 
 class StepsShow extends Component {
   constructor(props) {
@@ -155,9 +163,32 @@ class StepsShow extends Component {
           </Modal.Body>
           <Modal.Footer />
         </Modal>
-        {stepNodes || (
-          <Skeleton className="ml-5 wrapper" height={200} count={3} />
-        )}
+
+        {(
+          <Fragment>
+            {stepNodes}
+            <div className="text-center mt-5 mb-4">
+              <FacebookShareButton
+                className="d-inline-block mr-3 pointer"
+                url={window.location.href}
+              >
+                <FacebookIcon size={40} round />
+              </FacebookShareButton>
+              <TwitterShareButton
+                className="d-inline-block pointer mr-3"
+                url={window.location.href}
+              >
+                <TwitterIcon size={40} round />
+              </TwitterShareButton>
+              <PocketShareButton
+                className="d-inline-block pointer"
+                url={window.location.href}
+              >
+                <PocketIcon size={40} round />
+              </PocketShareButton>
+            </div>
+          </Fragment>
+        ) || <Skeleton className="ml-5 wrapper" height={200} count={3} />}
       </div>
     );
   }

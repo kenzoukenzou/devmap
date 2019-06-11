@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { firestoreConnect } from "react-redux-firebase";
 import { compose } from "redux";
-import Twemoji from "react-twemoji";
 
 //action creater
 import { deleteOverview } from "../../store/actions/overviewActions";
@@ -17,7 +16,14 @@ import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
 // others
 import Helmet from "react-helmet";
-import { confirmAlert } from "react-confirm-alert";
+import {
+  FacebookShareButton,
+  FacebookIcon,
+  TwitterShareButton,
+  TwitterIcon,
+  PocketShareButton,
+  PocketIcon
+} from "react-share";
 
 class OverviewShow extends Component {
   render() {
@@ -36,11 +42,38 @@ class OverviewShow extends Component {
       overviews.map(overview => {
         return overview ? (
           <div>
-            <Helmet>
-              <title>
-                {overview.title} | {overview.authorName}さんのロードマップ
-              </title>
-            </Helmet>
+            {/* Handle meta data */}
+            <Helmet
+              title={`${overview.title} | ${
+                overview.authorName
+              }さんのロードマップ`}
+            />
+            {(() => {
+              const headData = document.head.children;
+              for (let i = 0; i < headData.length; i++) {
+                let prop = headData[i].getAttribute("property");
+
+                if (prop === "og:title") {
+                  headData[i].setAttribute(
+                    "content",
+                    `${overview.title} | ${
+                      overview.authorName
+                    }さんのロードマップ`
+                  );
+                } else if (prop === "twitter:image") {
+                  headData[i].setAttribute(
+                    "content",
+                    `${overview.eyeCatchImg}`
+                  );
+                } else if (prop === "og:url") {
+                  headData[i].setAttribute(
+                    "content",
+                    `https://devmap.work/overviews/${overview.id}`
+                  );
+                }
+              }
+            })()}
+
             <div style={{ padding: "2rem" }}>
               <img
                 src={overview.eyeCatchImg}
@@ -50,6 +83,26 @@ class OverviewShow extends Component {
               <p className="text-muted" style={{ fontSize: "0.9rem" }}>
                 {overview.description}
               </p>
+              <div className="text-right mb-4">
+                <FacebookShareButton
+                  className="d-inline-block mr-3 pointer"
+                  url={`https://devmap.work/overviews/${overview.id}`}
+                >
+                  <FacebookIcon size={40} round />
+                </FacebookShareButton>
+                <TwitterShareButton
+                  className="d-inline-block pointer mr-3"
+                  url={`https://devmap.work/overviews/${overview.id}`}
+                >
+                  <TwitterIcon size={40} round />
+                </TwitterShareButton>
+                <PocketShareButton
+                  className="d-inline-block pointer"
+                  url={`https://devmap.work/overviews/${overview.id}`}
+                >
+                  <PocketIcon size={40} round />
+                </PocketShareButton>
+              </div>
               <Link to={`/users/${overview.authorID}`}>
                 <img
                   src={overview.authorImage}
