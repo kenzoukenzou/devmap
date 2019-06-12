@@ -169,13 +169,13 @@ class StepsShow extends Component {
             {stepNodes}
             <div className="text-center mt-5 mb-4">
               <FacebookShareButton
-                className="d-inline-block mr-3 pointer"
+                className="d-inline-block mr-4 pointer"
                 url={window.location.href}
               >
                 <FacebookIcon size={40} round />
               </FacebookShareButton>
               <TwitterShareButton
-                className="d-inline-block pointer mr-3"
+                className="d-inline-block pointer mr-4"
                 url={window.location.href}
               >
                 <TwitterIcon size={40} round />

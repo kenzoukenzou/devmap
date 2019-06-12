@@ -48,32 +48,6 @@ class OverviewShow extends Component {
                 overview.authorName
               }さんのロードマップ`}
             />
-            {(() => {
-              const headData = document.head.children;
-              for (let i = 0; i < headData.length; i++) {
-                let prop = headData[i].getAttribute("property");
-
-                if (prop === "og:title") {
-                  headData[i].setAttribute(
-                    "content",
-                    `${overview.title} | ${
-                      overview.authorName
-                    }さんのロードマップ`
-                  );
-                } else if (prop === "twitter:image") {
-                  headData[i].setAttribute(
-                    "content",
-                    `${overview.eyeCatchImg}`
-                  );
-                } else if (prop === "og:url") {
-                  headData[i].setAttribute(
-                    "content",
-                    `https://devmap.work/overviews/${overview.id}`
-                  );
-                }
-              }
-            })()}
-
             <div style={{ padding: "2rem" }}>
               <img
                 src={overview.eyeCatchImg}
@@ -83,15 +57,15 @@ class OverviewShow extends Component {
               <p className="text-muted" style={{ fontSize: "0.9rem" }}>
                 {overview.description}
               </p>
-              <div className="text-right mb-4">
+              <div className="mb-4 share-links">
                 <FacebookShareButton
-                  className="d-inline-block mr-3 pointer"
+                  className="d-inline-block mr-4 pointer"
                   url={`https://devmap.work/overviews/${overview.id}`}
                 >
                   <FacebookIcon size={40} round />
                 </FacebookShareButton>
                 <TwitterShareButton
-                  className="d-inline-block pointer mr-3"
+                  className="d-inline-block pointer mr-4"
                   url={`https://devmap.work/overviews/${overview.id}`}
                 >
                   <TwitterIcon size={40} round />
@@ -114,7 +88,7 @@ class OverviewShow extends Component {
             </div>
             {/* display edit & delete links if author */}
             {overview.authorID === auth.uid ? (
-              <div className="text-right">
+              <div className="text-right mr-5">
                 <Link
                   to={`/edit/${overview.id}`}
                   className="mr-4"
@@ -144,7 +118,7 @@ class OverviewShow extends Component {
       });
 
     // if (!auth.uid) return <Redirect to="/login" />;
-    return <div className="mt-4 overview-wrapper">{overviewNodes}</div>;
+    return <div className="mt-4 mb-5 overview-wrapper">{overviewNodes}</div>;
   }
 }
 

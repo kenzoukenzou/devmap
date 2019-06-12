@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
+// import { render } from "react-snapshot";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import * as serviceWorker from "./serviceWorker";
 import { createStore, applyMiddleware, compose } from "redux";

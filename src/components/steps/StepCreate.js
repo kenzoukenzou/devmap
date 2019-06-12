@@ -28,7 +28,7 @@ class StepCreate extends Component {
   render() {
     const { title, link, description } = this.state;
     return (
-      <div className="mt-5 mb-5">
+      <div className="ml-4 mt-5 mb-5 mr-4">
         <form onSubmit={this.onSubmit}>
           <div className="form-group">
             <label htmlFor="title" className="text-secondary">

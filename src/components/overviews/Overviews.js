@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { firestoreConnect } from "react-redux-firebase";
@@ -8,15 +8,12 @@ import { Facebook } from "react-content-loader";
 
 class Overviews extends Component {
   render() {
-    const { auth, overviews } = this.props;
+    const { overviews } = this.props;
     // if (!auth.uid) return <Redirect to="/login" />;
 
     return (
       <div className="mt-4">
-        <Helmet>
-          <title>Devmap | 独学ロードマップ共有サービス</title>
-          <meta name="description" content="独学ロードマップ共有サービス" />
-        </Helmet>
+        <Helmet title="Devmap | 独学ロードマップ共有サービス" />
         {overviews ? (
           overviews.map(overview => (
             <Link to={`/overviews/${overview.key}`}>
