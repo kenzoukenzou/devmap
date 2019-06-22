@@ -7,10 +7,10 @@ jobs:
       - checkout
       - run:
           name: npm install
-          command: npm install --unsafe
+          command: npm install
       - run:
           name: build react
-          command: npm run build
+          command: yarn build
       - run:
           name: deploy firebase
           command: firebase deploy --token=$FIREBASE_TOKEN
