@@ -1,0 +1,19 @@
+version: 2
+jobs:
+  deploy_dev:
+    steps:
+      - checkout
+      - run:
+        name: build
+        command: npm run build
+      - run:
+        name: deploy to Firebase
+        command: firebase deploy
+workflows:
+  version: 2
+  build_and_deploy:
+    jobs:
+      - deploy_dev:
+        filters:
+          branches:
+            only: master
