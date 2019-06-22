@@ -3,7 +3,6 @@ jobs:
   deploy:
     docker:
       - image: circleci/node:8.2.1
-    working_directory: ~/workspace
     steps:
       - checkout
       - run:
