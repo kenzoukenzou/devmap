@@ -9,6 +9,9 @@ jobs:
           name: npm install
           command: npm install --unsafe
       - run:
+          name: npm install for functions
+          command: cd functions;npm install --unsafe;cd ..
+      - run:
           name: build
           command: npm run build
       - run:
