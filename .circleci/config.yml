@@ -12,9 +12,6 @@ jobs:
           name: build
           command: npm run build
       - run:
-          name: copy index.html for functions
-          command: cp build/index.html functions/hosting/index.html
-      - run:
           name: deploy to Firebase Hosting
           command: ln -s ./node_modules/.bin/firebase . && ./firebase deploy --token=$FIREBASE_TOKEN
 
