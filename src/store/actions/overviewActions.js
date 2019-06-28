@@ -9,7 +9,8 @@ export const createOverview = overview => {
     // .doc(authorId)
     firestore
       .collection("overviews")
-      .add({
+      .doc(overview.key)
+      .set({
         ...overview,
         authorName: profile.displayName,
         authorImage: profile.avatarUrl,

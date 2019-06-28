@@ -60,19 +60,19 @@ class OverviewShow extends Component {
               <div className="mb-4 share-links">
                 <FacebookShareButton
                   className="d-inline-block mr-4 pointer"
-                  url={`https://devmap.work/overviews/${overview.id}`}
+                  url={window.location.href}
                 >
                   <FacebookIcon size={40} round />
                 </FacebookShareButton>
                 <TwitterShareButton
                   className="d-inline-block pointer mr-4"
-                  url={`https://devmap.work/overviews/${overview.id}`}
+                  url={window.location.href}
                 >
                   <TwitterIcon size={40} round />
                 </TwitterShareButton>
                 <PocketShareButton
                   className="d-inline-block pointer"
-                  url={`https://devmap.work/overviews/${overview.id}`}
+                  url={window.location.href}
                 >
                   <PocketIcon size={40} round />
                 </PocketShareButton>
