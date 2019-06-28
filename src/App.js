@@ -7,7 +7,7 @@ import OverviewCreate from "./components/overviews/OverviewCreate";
 import OverviewEdit from "./components/overviews/OverviewEdit";
 import Overviews from "./components/overviews/Overviews";
 import OverviewShow from "./components/overviews/OverviewShow";
-import UserShow from "./components/users/UserShow";
+// import UserShow from "./components/users/UserShow";
 import About from "./components/layout/About";
 import ScrollToTop from "./components/layout/ScrollTop";
 
@@ -26,7 +26,7 @@ class App extends Component {
                 <Route path="/create/:id" component={OverviewCreate} />
                 <Route path="/overviews/:id" component={OverviewShow} />
                 <Route path="/login" component={Login} />
-                <Route path="/users/:id" component={UserShow} />
+                {/* <Route path="/users/:id" component={UserShow} /> */}
               </Switch>
             </div>
           </ScrollToTop>
