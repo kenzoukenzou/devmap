@@ -92,7 +92,11 @@ class StepsShow extends Component {
                     {"  "}
                     {/* display link if exists */}
                     {step.link ? (
-                      <a target="_blank" href={step.link}>
+                      <a
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        href={step.link}
+                      >
                         <FontAwesomeIcon icon={faLink} />
                       </a>
                     ) : null}

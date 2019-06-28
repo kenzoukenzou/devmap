@@ -12,7 +12,6 @@ const commentReducer = (state = initState, action) => {
       return state;
     case "EDIT_STEP":
       return state;
-      console.log("Success");
     case "EDIT_STEP_ERROR":
       return state;
     default:

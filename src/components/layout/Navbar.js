@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { logout } from "../../store/actions/authActions";
-import Twemoji from "react-twemoji";
 import { firestoreConnect } from "react-redux-firebase";
 import { compose } from "redux";
 import uuid from "uuid";
@@ -22,9 +21,9 @@ class CustomToggle extends React.Component {
 
   render() {
     return (
-      <a href="" onClick={this.handleClick}>
+      <span style={{ cursor: "pointer" }} onClick={this.handleClick}>
         {this.props.children}
-      </a>
+      </span>
     );
   }
 }
@@ -72,7 +71,7 @@ class Navbar extends Component {
       </div>
     ) : (
       <div className="text-right">
-        {url == "/login" ? null : (
+        {url === "/login" ? null : (
           <Link className="btn btn-primary ml-2" to="/login">
             はじめる
           </Link>

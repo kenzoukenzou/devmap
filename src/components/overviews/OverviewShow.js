@@ -129,6 +129,7 @@ const mapStateToProps = (state, ownProps) => {
     alloverviews &&
     alloverviews.map(doc => {
       if (doc.key === id) return doc;
+      else return null;
     });
   return {
     overviews: overviews,
